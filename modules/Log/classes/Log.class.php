@@ -126,7 +126,7 @@ class Miao_Log
 		return $log;
 	}
 
-	static public function factory2( $filename, $verbose = false, $level = 7 )
+	static public function easyFactory( $filename, $verbose = false, $level = 7 )
 	{
 		$result = new self();
 		if ( $filename )

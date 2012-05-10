@@ -149,7 +149,7 @@ class Miao_TemplatesEngine_PhpNative implements Miao_TemplatesEngine_Interface
 		{
 			$debugMode = $this->getDebugMode();
 			$logFilename = $this->_logFilename;
-			$log = Miao_Log::factory2( $logFilename, false, $debugMode ? Miao_Log::DEBUG : Miao_Log::ERR );
+			$log = Miao_Log::easyFactory( $logFilename, false, $debugMode ? Miao_Log::DEBUG : Miao_Log::ERR );
 			$this->_log = $log;
 		}
 

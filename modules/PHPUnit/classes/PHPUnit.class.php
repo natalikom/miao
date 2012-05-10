@@ -123,7 +123,7 @@ class Miao_PHPUnit
 
 	static public function getTempPath()
 	{
-		$result = Miao_Config::Main()->get( '/build/paths/tmp' );
+		$result = Miao_Config::Main()->get( 'config.paths.tmp' );
 		return $result;
 	}
 

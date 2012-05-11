@@ -146,7 +146,8 @@ class Miao_PHPUnit_Console
 			$runner = new PHPUnit_TextUI_TestRunner();
 			$arguments = array(
 				'processIsolation' => false,
-				'backupGlobals' => false );
+				'backupGlobals' => false,
+				'colors' => true );
 			$runner->doRun( $this->_testSuite, $arguments );
 		}
 		else

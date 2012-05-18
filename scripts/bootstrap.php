@@ -1,8 +1,14 @@
 <?php
-$config = include __DIR__ . '/../data/config.php' ;
-require_once PROJECT_ROOT . '/modules/Autoload/classes/Autoload.class.php';
-//require_once PROJECT_ROOT . '/scripts/miao.php';
+$config = include dirname( __FILE__ ) . '/../data/config.php';
+foreach ( $config[ 'libs' ] as $value )
+{
+	if ( 'Miao' == $value[ 'name' ] )
+	{
+		require_once $value[ 'path' ] . '/modules/Autoload/classes/Autoload.class.php';
+		break;
+	}
+}
 
-Miao_Autoload::register( $config['libs'] );
+Miao_Autoload::register( $config[ 'libs' ] );
 Miao_Path::register( $config );
-Miao_Env::register( $config['env'] );
+Miao_Env::defaultRegister();

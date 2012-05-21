@@ -134,7 +134,7 @@ def get(path):
 	return objConf.get(path)
 	
 def process(list,config_file):
-	global objConf 
+	global objConf	
 	objConf = config.Config(config_file)
 	if list[0].lower() == 'add':
 		if len(list) == 2:

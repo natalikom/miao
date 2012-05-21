@@ -7,8 +7,8 @@ def parseOptions():
         # print help information and exit:
         print str(err) # will print something like "option -a not recognized"
         usage()
-        sys.exit(2)        
-    
+        sys.exit(2)       
+    config_file = ''
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
@@ -19,8 +19,7 @@ def parseOptions():
             assert False, "unhandled option"
             
     if not os.path.isfile(config_file):
-        raise FileNotFound('Config file "%s" not found' % config_file)
-    
+        raise FileNotFound('Config file "%s" not found' % config_file)    
     list = args
     if not len(list):
         print "Error: Empty command"

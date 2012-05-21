@@ -8,17 +8,18 @@ class XmlParseError(Exception):
 class PropertyNotFound(Exception):
 	pass
 
-#config_file = os.getcwd() + '/tmp/configs/config_build.xml'
-config_file = '/www/v2.realty.rbc.ru/data/config.xml'
-if not os.path.isfile(config_file):
-	raise FileNotFound('Config file "%s" not found' % config_file)
+class Config:
+	'Класс для работы с xml деревом'
+	
+	_tree = None 
+	def __init__(self, config_file):
+		try:
+			self._tree = etree.parse(config_file)
+		except etree.ParseError:
+			raise XmlParseError('Config file "%s" is invalid xml' % config_file)	
 
-def get(path):
-	try:
-		tree = etree.parse(config_file)
-	except etree.ParseError:
-		raise XmlParseError('Config file "%s" is invalid xml' % config_file)
-	node = tree.getroot().find(path)
-	if node is None:
-		raise PropertyNotFound('Property "%s" not found in "%s"' % (path, config_file))
-	return node.text
+	def get(self, path):	
+		node = self._tree.getroot().find(path)
+		if node is None:
+			raise PropertyNotFound('Property "%s" not found in "%s"' % (path, config_file))
+		return node.text

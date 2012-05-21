@@ -31,7 +31,7 @@ class ClassName:
 		if not self.project:
 			raise InvalidClassName('Empty project in "%s"' % self.full_name)
 		try:
-			config.get('libs/' + self.project + '/deploy/dst')
+			get('libs/' + self.project + '/deploy/dst')
 		except config.PropertyNotFound:
 			raise InvalidClassName('Non-existent project in "%s"' % self.full_name)
 		if not self.module:
@@ -48,7 +48,7 @@ class ClassName:
 class ClassPath:
 	def __init__(self, name):
 		self.class_name = ClassName(name, validate = True)
-		self.root = config.get('libs/' + self.class_name.project + '/deploy/dst')
+		self.root = get('libs/' + self.class_name.project + '/deploy/dst')
 		self.templates_root = get_templates_root()
 	def get_class_src(self):
 		return '%s/%s.class.php' % (self.templates_root, self.class_name.resource)
@@ -68,25 +68,6 @@ class ClassPath:
 		elif self.class_name.resource  == 'Action':
 			path = ''
 		return path 
-
-#class_path1 = ClassPath('Teleprog_FrontOffice_View_Main')
-#print class_path1.get_class_src()
-#print class_path1.get_class_dst()
-#print class_path1.get_tpl_src()
-#print class_path1.get_tpl_dst()
-#print
-#class_path2 = ClassPath('Teleprog_FrontOffice_ViewBlock_Main')
-#print class_path2.get_class_src()
-#print class_path2.get_class_dst()
-#print class_path2.get_tpl_src()
-#print class_path2.get_tpl_dst()
-#print
-#class_path3 = ClassPath('Teleprog_FrontOffice_Action_Main')
-#print class_path3.get_class_src()
-#print class_path3.get_class_dst()
-#print class_path3.get_tpl_src()
-#print class_path3.get_tpl_dst()
-#print
 
 def copy_file(src, dst, replace = {}):
 	if not src or not dst:
@@ -146,8 +127,15 @@ def remove(name):
 	class_path = ClassPath(name)
 	remove_file(class_path.get_class_dst())
 	remove_file(class_path.get_tpl_dst())
+
+objConf = None
+
+def get(path):	
+	return objConf.get(path)
 	
-def process(list):
+def process(list,config_file):
+	global objConf 
+	objConf = config.Config(config_file)
 	if list[0].lower() == 'add':
 		if len(list) == 2:
 			add(list[1])

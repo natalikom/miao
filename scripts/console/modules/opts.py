@@ -7,15 +7,14 @@ def parseOptions():
         # print help information and exit:
         print str(err) # will print something like "option -a not recognized"
         usage()
-        sys.exit(2)
-        
-    config_file = ''
+        sys.exit(2)        
+    
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
             sys.exit()
         elif o in ("-c", "--config"):
-            config_file = a                
+            config_file = a                            
         else:
             assert False, "unhandled option"
             
@@ -26,9 +25,8 @@ def parseOptions():
     if not len(list):
         print "Error: Empty command"
         usage()
-        sys.exit(2)
-    
-    return list
+        sys.exit(2)    
+    return [list,config_file]
         
 def usage():
     print "\nAvailable commands: add, ren, del"
@@ -40,4 +38,4 @@ def usage():
     print "-c, --config \tAbsolute path to config.xml file"
 
 def printHeader():
-    print 'Miao Console v0.11'
+    print 'Miao Console v foooo'

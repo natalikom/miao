@@ -24,7 +24,8 @@ abstract class Miao_Office_DataHelper_JsCssList extends Miao_Office_DataHelper
 		$replace = '';
 		foreach ( $fileList as $value )
 		{
-			$result[] = $this->_dataHelperUrl->src( str_replace( $search, $replace, $value ) );
+			$query = 't=' . Miao_Config::Main()->get( 'config.timestamp' );
+			$result[] = $this->_dataHelperUrl->src( str_replace( $search, $replace, $value ), $query );
 		}
 		return $result;
 	}

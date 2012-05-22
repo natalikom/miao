@@ -121,6 +121,10 @@ abstract class Miao_Office_View
 		{
 			$block_class_name = $className[ 0 ];
 			$block_class_process_params = $className[ 1 ];
+			if ( !is_array( $block_class_process_params ) )
+			{
+				$block_class_process_params = array( $block_class_process_params );
+			}
 		}
 
 		$viewBlock = new $block_class_name( $name, $templates, $block_class_process_params );

@@ -35,12 +35,5 @@ require_once 'Exception/InvalidClassName.class.php';
 
 class Miao_Autoload_Exception extends Exception
 {
-	public function __construct( $message, $code = 0 )
-	{
-		if ( !headers_sent() )
-		{
-			header( 'HTTP/1.1 500 Internal Server Error' );
-		}
-		parent::__construct( $message, $code );
-	}
+
 }
